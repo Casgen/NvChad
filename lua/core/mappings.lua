@@ -18,10 +18,10 @@ M.general = {
   n = {
     ["<Esc>"] = { ":noh <CR>", "Clear highlights" },
     -- switch between windows
-    ["<C-h>"] = { "<C-w>h", "Window left" },
-    ["<C-l>"] = { "<C-w>l", "Window right" },
-    ["<C-j>"] = { "<C-w>j", "Window down" },
-    ["<C-k>"] = { "<C-w>k", "Window up" },
+    ["<C-h>"] = { "<Cmd>NvimTmuxNavigateLeft<CR>", "Window left" },
+    ["<C-l>"] = { "<Cmd>NvimTmuxNavigateRight<CR>", "Window right" },
+    ["<C-j>"] = { "<Cmd>NvimTmuxNavigateDown<CR>", "Window down" },
+    ["<C-k>"] = { "<Cmd>NvimTmuxNavigateUp<CR>", "Window up" },
 
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },

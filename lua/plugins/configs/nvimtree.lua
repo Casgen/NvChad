@@ -19,7 +19,7 @@ local options = {
     preserve_window_proportions = true,
   },
   git = {
-    enable = false,
+    enable = true,
     ignore = true,
   },
   filesystem_watchers = {
@@ -36,7 +36,7 @@ local options = {
     highlight_opened_files = "none",
 
     indent_markers = {
-      enable = false,
+      enable = true,
     },
 
     icons = {
@@ -44,17 +44,17 @@ local options = {
         file = true,
         folder = true,
         folder_arrow = true,
-        git = false,
+        git = true,
       },
 
       glyphs = {
         default = "󰈚",
         symlink = "",
         folder = {
-          default = "",
+          default = "",
+          open = "",
           empty = "",
-          empty_open = "",
-          open = "",
+          empty_open = "",
           symlink = "",
           symlink_open = "",
           arrow_open = "",
