@@ -1,80 +1,59 @@
 local plugins = {
+  { "jose-elias-alvarez/null-ls.nvim" },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "williamboman/mason.nvim",
+    },
+  },
+  {
+    "folke/neodev.nvim",
+    config = function()
+      require("neodev").setup()
+    end,
+  },
   {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      "jose-elias-alvarez/null-ls.nvim",
+      config = function()
+        require "custom.configs.null-ls"
+      end,
+    },
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
-      local on_attach = require("plugins.configs.lspconfig").on_attach;
-      local capabilities = require("plugins.configs.lspconfig").capabilities;
+      local on_attach = require("plugins.configs.lspconfig").on_attach
+      local capabilities = require("plugins.configs.lspconfig").capabilities
 
-
-      require("lspconfig").clangd.setup{
+      require("lspconfig").clangd.setup {
         on_attach = on_attach,
-        capabilities = capabilities
+        capabilities = capabilities,
+      }
+
+      require("lspconfig").eslint.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
       }
     end,
   },
   {
     "alexghergh/nvim-tmux-navigation",
     lazy = false,
-    config = function ()
-      local nvim_tmux_nav = require("nvim-tmux-navigation")
+    config = function()
+      local nvim_tmux_nav = require "nvim-tmux-navigation"
 
       nvim_tmux_nav.setup {
-        disable_when_zoomed = true
+        disable_when_zoomed = true,
       }
-    end
+    end,
   },
   { "tpope/vim-fugitive" },
-  { "jose-elias-alvarez/null-ls.nvim" },
-
-  -- { "mfussenegger/nvim-dap" },
-  -- { "jay-babu/mason-nvim-dap.nvim", requires = {"williamboman/mason.nvim"} , lazy = false, config = function()
-  --     require("mason").setup()
-  --     require("mason-nvim-dap").setup({
-  --       automatic_installation = true,
-  --       handlers = {
-  --         function(config)
-  --           require("mason-nvim-dap").default_setup(config)
-  --         end,
-  --         cppdbg = function(config)
-  --           config.configurations.cpp = {
-  --             {
-  --                 name = "(gdb) Launch",
-  --                 type = "cppdbg",
-  --                 request = "launch",
-  --                 program =  "${workspaceRoot}/ECSImplementation/bin/Debug/ECSImplementation",
-  --                 args = {},
-  --                 stopAtEntry = false,
-  --                 cwd = "${fileDirname}",
-  --                 environment = {},
-  --                 externalConsole = false,
-  --                 MIMode =  "gdb",
-  --                 setupCommands =  {
-  --                     {
-  --                         description = "Enable pretty-printing for gdb",
-  --                         text = "-enable-pretty-printing",
-  --                         ignoreFailures = true
-  --                     },
-  --                     {
-  --                         description = "Set Disassembly Flavor to Intel",
-  --                         text = "-gdb-set disassembly-flavor intel",
-  --                         ignoreFailures = true
-  --                     }
-  --                 },
-  --             }
-  --           }
-  --         end
-  --
-  --       },
-  --     })
-  --   end
-  -- },
-
-  -- Old Nvim DAP
   { "mfussenegger/nvim-dap" },
   { "sakhnik/nvim-gdb" },
-  { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap"} },
+  { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } },
 }
 
 return plugins

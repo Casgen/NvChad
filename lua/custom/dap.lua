@@ -1,7 +1,6 @@
-local dap = require("dap")
-local dap_install = require("dap-install")
-local dapui = require("dapui")
-
+local dap = require "dap"
+local dap_install = require "dap-install"
+local dapui = require "dapui"
 
 dap_install.setup()
 -- add other configs here
@@ -31,8 +30,8 @@ dapui.setup {
     },
     {
       elements = {
-        { id = "repl", size = 0.45 },
-        { id = "console", size = 0.55 },
+        { id = "repl", size = 0.50 },
+        { id = "console", size = 0.50 },
       },
       size = 0.25,
       position = "bottom",
@@ -51,43 +50,65 @@ dapui.setup {
 dap.adapters.dart = {
   type = "executable",
   command = "flutter",
-  args = {"debug_adapter"}
+  args = { "debug_adapter" },
 }
 
 -- Don't forget to install the codelldb-vscode through Mason! (it is names just "codelldb")
 dap.adapters.cppdbg = {
-  type = 'executable',
+  type = "executable",
   command = "/home/oem/.local/share/nvim/mason/bin/OpenDebugAD7",
-  id = 'cppdbg'
+  id = "cppdbg",
 }
 
 dap.configurations.cpp = {
-    {
-        name = "(gdb) Launch",
-        type = "cppdbg",
-        request = "launch",
-        program =  "${workspaceFolder}/ECSImplementation/bin/Debug/ECSImplementation",
-        args = {},
-        stopAtEntry = false,
-        cwd = "${fileDirname}",
-        environment = {},
-        MIMode =  "gdb",
-        setupCommands =  {
-            {
-                description = "Enable pretty-printing for gdb",
-                text = "-enable-pretty-printing",
-                ignoreFailures = true
-            },
-            {
-                description = "Set Disassembly Flavor to Intel",
-                text = "-gdb-set disassembly-flavor intel",
-                ignoreFailures = true
-            }
-        },
-    }
+  -- {
+  --     name = "(gdb) Launch",
+  --     type = "cppdbg",
+  --     request = "launch",
+  --     program =  "${workspaceFolder}/ECSImplementation/bin/Debug/ECSImplementation",
+  --     args = {},
+  --     stopAtEntry = false,
+  --     cwd = "${fileDirname}",
+  --     environment = {},
+  --     MIMode =  "gdb",
+  --     setupCommands =  {
+  --         {
+  --             description = "Enable pretty-printing for gdb",
+  --             text = "-enable-pretty-printing",
+  --             ignoreFailures = true
+  --         },
+  --         {
+  --             description = "Set Disassembly Flavor to Intel",
+  --             text = "-gdb-set disassembly-flavor intel",
+  --             ignoreFailures = true
+  --         }
+  --     },
+  -- },
+  {
+    name = "(gdb) Launch",
+    type = "cppdbg",
+    request = "launch",
+    program = "${workspaceFolder}/bin/Debug-linux-x86_64/MeshAndTaskShaders/MeshAndTaskShaders",
+    args = {},
+    stopAtEntry = false,
+    cwd = "${fileDirname}",
+    environment = {},
+    MIMode = "gdb",
+    preLaunchTask = "./BuildAndCompile.sh",
+    setupCommands = {
+      {
+        description = "Enable pretty-printing for gdb",
+        text = "-enable-pretty-printing",
+        ignoreFailures = true,
+      },
+      {
+        description = "Set Disassembly Flavor to Intel",
+        text = "-gdb-set disassembly-flavor intel",
+        ignoreFailures = true,
+      },
+    },
+  },
 }
-
-
 
 dap.configurations.dart = {
   {
@@ -96,9 +117,8 @@ dap.configurations.dart = {
     name = "Launch Flutter program",
     program = "lib/main.dart",
     cwd = "${workspaceFolder}",
-  }
+  },
 }
-
 
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
 
@@ -106,10 +126,9 @@ dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()
 end
 
-
 dap.listeners.after.event_terminated["dapui_config"] = function()
   dapui.close()
-  vim.cmd(":lua require'dap'.close()")
+  vim.cmd ":lua require'dap'.close()"
 end
 
 dap.listeners.before.event_exited["dapui_config"] = function()
@@ -117,6 +136,5 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 dap.listeners.after.event_exited["dapui_config"] = function()
-  vim.cmd(":lua require'dap'.close()")
+  vim.cmd ":lua require'dap'.close()"
 end
-

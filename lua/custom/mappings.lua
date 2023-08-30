@@ -17,7 +17,9 @@ M.custom = {
     ["<C-Down>"] = { "<cmd>resize +2<CR>", "Resize window downwards" },
     ["<C-Left>"] = { "<cmd>vertical resize -2<CR>", "Resize window towards left" },
     ["<C-Right>"] = { "<cmd>vertical resize +2<CR>", "Resize window towards right" },
-    ["<leader>nh"] = {"<cmd>nohlsearch<CR>", "Clears highlights"}
+    ["<leader>nh"] = {"<cmd>nohlsearch<CR>", "Clears highlights"},
+    ["<leader>o"] = {"o<Esc>", "Inserts new line below"},
+    ["<leader>O"] = {"O<Esc>", "Inserts new line above"}
   }
 }
 
@@ -32,8 +34,11 @@ M.dap = {
     ["<leader>dl"] = {"<cmd>lua require'dap'.run_last()<CR>", "Run last"},
     ["<leader>du"] = {"<cmd>lua require'dapui'.toggle()<CR>", "Toggle"},
     ["<leader>dt"] = {"<cmd>lua require'dap'.terminate()<CR>", "Terminate"},
-    ["<leader>dC"] = {"<cmd>lua require'dap'.close()<CR>", "Close session"},
+    ["<leader>dC"] = {"<cmd>lua require'dap'.close()<CR> <cmd>lua require'dapui'.close()<CR>", "Force close session and UI"},
     ["<leader>dx"] = {"<cmd>lua require'dapui'.close()<CR>", "Close DAP ui"},
+    ["<leader>dh"] = {"<cmd>lua require'dap.ui.widgets'.hover()<CR>", "Hover"},
+    ["<leader>dp"] = {"<cmd>lua require'dap.ui.widgets'.preview()<CR>", "Preview"},
+    ["<leader>df"] = {"<cmd>lua require'dap.ui.widgets'.float()<CR>", "Centered Float (Frames)"},
   }
 }
 
