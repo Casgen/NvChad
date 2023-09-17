@@ -42,4 +42,20 @@ M.dap = {
   }
 }
 
+M.obsidian = {
+    n = {
+        ["<leader>on"] = {"<cmd>ObsidianNew<CR>", "Create a new note"},
+        ["<leader>ot"] = {"<cmd>ObsidianTemplate<CR>", "Insert a template into the note using telescope.nvim"},
+        ["<leader>of"] = {"<cmd>ObsidianFollowLink<CR>", "Follow a note reference below the cursor"},
+    }
+}
+
+M.markdown = {
+    n = {
+        ["<leader>mp"] = {"<cmd>MarkdownPreview<CR>", "Opens up a new browser tab and previews the markdown"},
+        ["<leader>ms"] = {"<cmd>MarkdownStop<CR>", "Shuts down the browser tab with the preview"},
+    }
+}
+
+
 return M
