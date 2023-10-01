@@ -30,6 +30,7 @@ M.dap = {
     ["<leader>di"] = {"<cmd>lua require'dap'.step_into()<CR>", "Step into"},
     ["<leader>do"] = {"<cmd>lua require'dap'.step_over()<CR>", "Step over"},
     ["<leader>dO"] = {"<cmd>lua require'dap'.step_out()<CR>", "Step out"},
+    ["<leader>dj"] = {"<cmd>lua require'dap'.run_to_cursor()<CR>", "Run to cursor"},
     ["<leader>dr"] = {"<cmd>lua require'dap'.repl.toggle()<CR>", "Repl toggle"},
     ["<leader>dl"] = {"<cmd>lua require'dap'.run_last()<CR>", "Run last"},
     ["<leader>du"] = {"<cmd>lua require'dapui'.toggle()<CR>", "Toggle"},
