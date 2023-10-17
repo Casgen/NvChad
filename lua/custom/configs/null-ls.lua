@@ -4,14 +4,13 @@ local formatting = null_ls.builtins.formatting
 -- local lint = null_ls.builtins.diagnostics
 
 local sources = {
-  formatting.clang_format,
-  formatting.stylua,
-  formatting.prettierd,
+    formatting.clang_format,
+    formatting.stylua,
+    formatting.prettierd,
+    formatting.autopep8,
 }
 
 null_ls.setup {
-  debug = true,
-  sources = sources,
+    debug = true,
+    sources = sources,
 }
-
-

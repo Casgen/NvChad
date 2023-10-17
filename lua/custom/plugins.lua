@@ -51,9 +51,19 @@ local plugins = {
         end,
     },
     { "tpope/vim-fugitive" },
+
+    -- DAP
     { "mfussenegger/nvim-dap" },
     { "sakhnik/nvim-gdb" },
     { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } },
+    {
+        "mfussenegger/nvim-dap-python",
+        requires = { "mfussenegger/nvim-dap" },
+        config = function()
+            require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+        end,
+    },
+
     { "mg979/vim-visual-multi" },
     {
         "iamcco/markdown-preview.nvim",
@@ -89,6 +99,18 @@ local plugins = {
                 },
                 mappings = {},
             }
+        end,
+    },
+    {
+        "axkirillov/hbac.nvim",
+        dependencies = {
+            -- these are optional, add them, if you want the telescope module
+            "nvim-telescope/telescope.nvim",
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+            require("hbac").setup()
         end,
     },
 }
