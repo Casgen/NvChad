@@ -7,7 +7,8 @@ local sources = {
     formatting.clang_format,
     formatting.stylua,
     formatting.prettierd,
-    formatting.autopep8,
+    formatting.black,
+    formatting.rustfmt
 }
 
 null_ls.setup {

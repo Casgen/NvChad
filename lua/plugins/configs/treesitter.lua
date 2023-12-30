@@ -4,6 +4,7 @@ local options = {
   highlight = {
     enable = true,
     use_languagetree = true,
+    ignore_install = { 'latex' }
   },
 
   indent = { enable = true },

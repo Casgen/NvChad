@@ -23,8 +23,6 @@ local plugins = {
             end,
         },
         config = function()
-            require "plugins.configs.lspconfig"
-            require "custom.configs.lspconfig"
             local on_attach = require("plugins.configs.lspconfig").on_attach
             local capabilities = require("plugins.configs.lspconfig").capabilities
 
@@ -37,6 +35,8 @@ local plugins = {
                 on_attach = on_attach,
                 capabilities = capabilities,
             }
+
+            require("lspconfig").ols.setup {}
         end,
     },
     {
@@ -60,7 +60,7 @@ local plugins = {
         "mfussenegger/nvim-dap-python",
         requires = { "mfussenegger/nvim-dap" },
         config = function()
-            require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+            require("dap-python").setup "~/.virtualenvs/debugpy/bin/python"
         end,
     },
 
@@ -110,9 +110,27 @@ local plugins = {
             "nvim-tree/nvim-web-devicons",
         },
         config = function()
-            require("hbac").setup()
+            require("hbac").setup {
+                autoclose = true,
+                threshold = 6,
+                close_command = function(bufnr)
+                    require("nvchad.tabufline").close_buffer(bufnr)
+                end,
+                close_buffers_with_windows = false,
+            }
         end,
     },
+    {
+        "simrat39/rust-tools.nvim",
+        dependencies = {
+            -- these are optional, add them, if you want the telescope module
+            "neovim/nvim-lspconfig",
+            "nvim-lua/plenary.nvim",
+            "mfussenegger/nvim-dap",
+        },
+    },
+    { "ianding1/leetcode.vim" },
+    { "lervag/vimtex", lazy = false },
 }
 
 return plugins

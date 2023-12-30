@@ -9,4 +9,16 @@ lspconfig.clangd.setup {
     log = "verbose"
 }
 
-lspconfig.pylsp.setup{}
+lspconfig.pyright.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+
+lspconfig.rust_analyzer.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+
+local rt = require("rust-tools")
+
+rt.setup({})
