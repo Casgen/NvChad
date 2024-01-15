@@ -16,7 +16,7 @@ M.general = {
   },
 
   n = {
-    ["<Esc>"] = { ":noh <CR>", "Clear highlights" },
+    ["<Esc>"] = { "<cmd> noh <CR>", "Clear highlights" },
     -- switch between windows
     ["<C-h>"] = { "<Cmd>NvimTmuxNavigateLeft<CR>", "Window left" },
     ["<C-l>"] = { "<Cmd>NvimTmuxNavigateRight<CR>", "Window right" },
